@@ -1,4 +1,3 @@
-# Basic bot dependencies
 from discord import Intents
 from discord.ext import commands
 import asyncio

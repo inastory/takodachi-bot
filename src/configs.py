@@ -1,4 +1,3 @@
-# Load configuration parameters
 import os
 import os, sys
 from dotenv import load_dotenv

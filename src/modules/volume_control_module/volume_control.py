@@ -1,4 +1,3 @@
-# run correctly
 import asyncio
 from typing import Any
 import comtypes
@@ -9,7 +8,6 @@ from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 if __name__ == "__main__":
     import sys
     import os
-    # 獲取父目錄的絕對路徑
     sys.path.append(os.path.abspath(
         os.path.join(os.path.dirname(__file__), '../'*3)))
 

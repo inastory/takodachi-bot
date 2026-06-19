@@ -50,8 +50,15 @@ class ServicesManager():
         self.start_service(APP_ICON_KEY)
 
     def stop_all_services(self):
-        for service in self._services.values():
-            service.stop_service()
+        print("[ServicesManager] Shutting down services one by one...")
+        for name, service in self._services.items():
+            try:
+                service.stop_service()
+                print(
+                    f"[ServicesManager] Service '{name}' stopped successfully.")
+            except Exception as e:
+                print(
+                    f"[ServicesManager] Error occurred while stopping service '{name}': {e}")
 
     def get_service(self, service_name):
         return self._services.get(service_name, None)
