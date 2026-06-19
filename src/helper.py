@@ -4,12 +4,21 @@ import sys
 
 def get_pyw_pid_list(app_name):
     pyw_pid_list = []
-    for process in psutil.process_iter(['pid', 'cmdline']):
+    # 🌟 增加抓取 'exe' 屬性
+    for process in psutil.process_iter(['pid', 'cmdline', 'exe']):
         command_line = process.info.get('cmdline', [])
+        exe_path = process.info.get('exe', '') or ''
+
         if not command_line:
             continue
-        if command_line[-1].lower() == app_name:
-            pyw_pid_list.append((process.info['pid']))
+
+        # 條件 1：結尾是 takodachi.pyw
+        if command_line[-1].lower().endswith(app_name):
+            # 🌟 條件 2：過濾掉住在 .venv\Scripts 底下的導航殼
+            if ".venv\\scripts" in exe_path.lower():
+                continue  # 跳過這個殼，不顯示它
+
+            pyw_pid_list.append(process.info['pid'])
     return pyw_pid_list
 
 def print_english_details(app_name, process):
