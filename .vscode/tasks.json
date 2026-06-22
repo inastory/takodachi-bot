@@ -1,51 +1,45 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Copy takodachi.pyw to takodachi.py",
+            "label": "PyInstaller: 從原始碼全新生成打包 (不使用 Spec)",
             "type": "shell",
-            "command": "cp",
+            "command": "uv",
             "args": [
-                "takodachi.pyw",
-                "takodachi.py"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Build takodachi with PyInstaller",
-            "type": "shell",
-            "command": "pyinstaller",
-            "args": [
-                "takodachi.py",
+                "run",
+                "pyinstaller",
+                "src/takodachi_bot/takodachi.py",
                 "--onefile",
-                "--console",
-                "--add-data",
-                "'assets/icon_logo.png;assets'",
-                "--add-data",
-                "'src/library/logger_exe.conf;src/library'",
+                "--noconsole",
+                "--hidden-import", "comtypes",
+                "--hidden-import", "pycaw",
+                "--hidden-import", "pystray._win32"
             ],
-            "group": {
-                "kind": "build",
-                "isDefault": false
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
             },
             "problemMatcher": []
         },
         {
-            "label": "Build and Copy Task",
-            "dependsOn": [
-                "Copy takodachi.pyw to takodachi.py",
-                "Build takodachi with PyInstaller"
+            "label": "PyInstaller: 依據 Spec 快速打包 (推薦日常使用)",
+            "type": "shell",
+            "command": "uv",
+            "args": [
+                "run",
+                "pyinstaller",
+                "takodachi.spec"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
         }
     ]
 }
