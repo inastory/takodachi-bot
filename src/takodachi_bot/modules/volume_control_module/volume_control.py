@@ -1,7 +1,7 @@
 import asyncio
 from typing import Any
 import comtypes
-from comtypes import cast, POINTER, windll
+from comtypes import cast, POINTER
 from comtypes import CLSCTX_ALL
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 

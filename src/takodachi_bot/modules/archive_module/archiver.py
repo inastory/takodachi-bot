@@ -5,7 +5,8 @@
 #       2. !savev "url"
 # Dependencies: 
 
-import logging, subprocess
+import logging
+import subprocess
 import takodachi_bot.configs as Configs
 import contextlib
 import re

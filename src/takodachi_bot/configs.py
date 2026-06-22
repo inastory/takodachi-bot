@@ -1,5 +1,5 @@
 import os
-import os, sys
+import sys
 from dotenv import load_dotenv
 from urllib.parse import quote_plus
 

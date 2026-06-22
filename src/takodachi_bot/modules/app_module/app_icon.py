@@ -1,4 +1,3 @@
-import subprocess
 from pystray import Icon, Menu, MenuItem
 from PIL import Image
 import os

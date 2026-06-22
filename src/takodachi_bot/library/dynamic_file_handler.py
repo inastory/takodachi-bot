@@ -1,7 +1,6 @@
 import takodachi_bot.configs as Configs
 import os
 from datetime import datetime
-from logging.handlers import RotatingFileHandler
 from logging import FileHandler
 
 class DynamicFileHandler(FileHandler):

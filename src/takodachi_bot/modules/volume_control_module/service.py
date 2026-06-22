@@ -1,7 +1,8 @@
 import asyncio
 
 if __name__ == "__main__":
-    import sys,os
+    import os
+    import sys
     sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../')))
 
 from takodachi_bot.modules.base_service import BaseService
