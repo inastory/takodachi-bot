@@ -2,6 +2,8 @@ import subprocess
 from pystray import Icon, Menu, MenuItem
 from PIL import Image
 import os
+import sys
+import subprocess
 import takodachi_bot.configs as configs
 
 from takodachi_bot.modules.archive_module.service import (
@@ -51,7 +53,17 @@ class AppIcon(Icon):
             message=notify_message)
 
     def show_app_status(self):
-        subprocess.Popen(['start', configs.APP_STATUS_BAT_PATH], shell=True)
+        if getattr(sys, 'frozen', False):
+            # --- 打包後的 EXE 環境 ---
+            # sys.executable 指向你的 takodachi.exe
+            # 'cmd /k' 執行完會保持視窗開啟（等同於原本 .bat 的 pause 效果）
+            subprocess.Popen(
+                f'start cmd /k "{sys.executable}" STATUS', shell=True)
+        else:
+            # --- 開發環境 (uv run) ---
+            # 透過 uv 虛擬環境直接去呼叫主程式進入點，並帶入 STATUS
+            # 這裡用 'cmd /k' 也是為了讓你看完狀態後黑視窗不會秒退
+            subprocess.Popen('start cmd /k "uv run bot STATUS"', shell=True)
 
     def show_discord_status(self):
         if self.services_manager.is_service_running(configs.SERVICE_DISCORD_BOT):
