@@ -5,7 +5,7 @@ if __name__ == "__main__":
     import sys
     sys.path.append(os.path.abspath(os.path.join(
         os.path.dirname(__file__), '../../..')))
-from configs import (
+from takodachi_bot.configs import (
     ARCHIVE_YOUTUBE_STREAM_BAT_PATCH as ARCHIVE_YOUTUBE_STREAM,
     ARCHIVE_VIDEO_BAT_PATCH as ARCHIVE_VIDEO,
     ARCHIVE_AND_PLAY_TWITCH_STREAM_BAT_PATCH as ARCHIVE_PLAY_TWITCH_STREAM,

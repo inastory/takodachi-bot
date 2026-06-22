@@ -4,24 +4,25 @@ from dotenv import load_dotenv
 from urllib.parse import quote_plus
 
 src_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.dirname(os.path.dirname(src_dir))
 
-project_root = os.path.abspath(os.path.join(src_dir, ".."))
-
-# env setup
-env_file_path = os.path.join(project_root, '.env')
+exe_dir = root_dir
+bundle_root = root_dir
+logger_base_dir = src_dir
 if getattr(sys, 'frozen', False):
-    env_file_path = os.path.join(os.path.dirname(sys.executable), '.env')
-load_dotenv(dotenv_path=env_file_path)
+    exe_dir = os.path.dirname(sys.executable)
+    bundle_root = getattr(sys, '_MEIPASS', root_dir)
+    logger_base_dir = bundle_root
+
+load_dotenv(dotenv_path=os.path.join(exe_dir, '.env'))
 
 # App setting
 APP_NAME = "Takodachi"
 APP_TITLE = "Wah!"
-APP_ICON_PATH = os.path.join(project_root, "assets", "icon_logo.png")
+APP_ICON_PATH = os.path.join(bundle_root, "assets", "icon_logo.png")
 
-APP_PROCESS_NAME = "takodachi.pyw"
-APP_STATUS_BAT_PATCH = os.path.join(project_root, "scripts", "takodachi-bot-status.bat")
-if getattr(sys, 'frozen', False):
-    APP_STATUS_BAT_PATCH = os.path.join(os.path.dirname(sys.executable), "takodachi-bot-status.bat")
+APP_PROCESS_NAME = "takodachi.py"
+APP_STATUS_BAT_PATH = os.path.join(exe_dir, "scripts", "takodachi-bot-status.bat")
 
 # Service setting
 SERVICE_APP_ICON = 'app_icon'
@@ -41,9 +42,9 @@ DATABASE_MARIADB_NAME = os.getenv("MARIADB_NAME")
 DATABASE_MARIADB_URL = f"mariadb+pymysql://{DATABASE_MARIADB_USER}:{quote_plus(str(DATABASE_MARIADB_PASSWORD))}@{DATABASE_MARIADB_HOST}:{DATABASE_MARIADB_PORT}/{DATABASE_MARIADB_NAME}"
 
 # Logger setting
-LOG_DIRECTORY = 'logs'
-LOGGER_CONFIGS_PATH = os.path.join(src_dir, 'library', 'logger.conf')
-LOGGER_CONFIGS_EXE_PATH = os.path.join(src_dir, 'library', 'logger_exe.conf')
+LOG_DIRECTORY = os.path.join(exe_dir, 'logs')
+LOGGER_CONFIGS_PATH = os.path.join(logger_base_dir, 'library', 'logger.conf')
+LOGGER_CONFIGS_EXE_PATH = os.path.join(logger_base_dir, 'library', 'logger_exe.conf')
 
 # API setting
 API_YOUTUBE_KEY = os.getenv("YOUTUBE_API_KEY")

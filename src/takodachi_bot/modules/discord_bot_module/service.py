@@ -5,9 +5,9 @@ if __name__ == "__main__":
     sys.path.append(os.path.abspath(os.path.join(
         os.path.dirname(__file__), '../../..')))
 
-import configs
-from modules.base_service import BaseService
-from modules.discord_bot_module.discord_bot import DiscordBot
+import takodachi_bot.configs as configs
+from takodachi_bot.modules.base_service import BaseService
+from takodachi_bot.modules.discord_bot_module.discord_bot import DiscordBot
 
 class DiscordBotService(BaseService):
     def __init__(self):

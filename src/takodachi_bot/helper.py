@@ -1,5 +1,5 @@
 import psutil
-from utils.datetime_utils import format_datetime_by_timestamp, count_difference_by_timestamp
+from takodachi_bot.utils.datetime_utils import format_datetime_by_timestamp, count_difference_by_timestamp
 import sys
 
 def get_pyw_pid_list(app_name):

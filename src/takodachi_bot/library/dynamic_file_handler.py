@@ -1,4 +1,4 @@
-import configs as Configs
+import takodachi_bot.configs as Configs
 import os
 from datetime import datetime
 from logging.handlers import RotatingFileHandler

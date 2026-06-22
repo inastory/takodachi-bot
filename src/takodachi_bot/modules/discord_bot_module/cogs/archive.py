@@ -1,5 +1,5 @@
 from discord.ext.commands import Cog, hybrid_command
-from modules.archive_module.archiver import Archiver
+from takodachi_bot.modules.archive_module.archiver import Archiver
 
 class Archive(Cog):
     def __init__(self, bot):

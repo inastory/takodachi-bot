@@ -6,7 +6,7 @@
 # Dependencies: 
 
 import logging, subprocess
-import configs as Configs
+import takodachi_bot.configs as Configs
 import contextlib
 import re
 

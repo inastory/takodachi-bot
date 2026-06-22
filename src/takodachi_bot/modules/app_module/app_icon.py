@@ -2,9 +2,9 @@ import subprocess
 from pystray import Icon, Menu, MenuItem
 from PIL import Image
 import os
-import configs
+import takodachi_bot.configs as configs
 
-from modules.archive_module.service import (
+from takodachi_bot.modules.archive_module.service import (
     archive_and_play_twitch_stream,
     archive_twitch_stream,
     archive_video,
@@ -51,7 +51,7 @@ class AppIcon(Icon):
             message=notify_message)
 
     def show_app_status(self):
-        subprocess.Popen(['start', configs.APP_STATUS_BAT_PATCH], shell=True)
+        subprocess.Popen(['start', configs.APP_STATUS_BAT_PATH], shell=True)
 
     def show_discord_status(self):
         if self.services_manager.is_service_running(configs.SERVICE_DISCORD_BOT):

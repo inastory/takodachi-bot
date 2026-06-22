@@ -9,6 +9,6 @@ projectRoot = fso.GetParentFolderName(vbsDirectory)
 WshShell.CurrentDirectory = projectRoot
 
 pythonwPath = fso.BuildPath(projectRoot, ".venv\Scripts\pythonw.exe")
-scriptPath = fso.BuildPath(projectRoot, "src\takodachi.pyw")
+scriptPath = fso.BuildPath(projectRoot, "src\takodachi-bot\takodachi.pyw")
 
 WshShell.Run """" & pythonwPath & """ """ & scriptPath & """", 0, False

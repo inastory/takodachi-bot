@@ -10,8 +10,10 @@
 
 - [x] Volume module (Completed on: 2023-11-15)
 
+- [x] Restructure the whole project (Completed on: 2026-06-22)
+
 - [ ] Hololive schedule module
 - [ ] Window control
 
 # Debug
-- [ ] The logs file is not release yet after the program exit.
+- [X] The program is not release yet after the program exit.
