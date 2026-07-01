@@ -1,6 +1,7 @@
 # To-Do List
 
 # Function
+
 - [x] First release (Completed on: 2023-09-25)
 - [x] Local call cmd in icon (Completed on: 2023-09-25)
 
@@ -16,7 +17,10 @@
 - [ ] Window control
 
 - [] Disable services
+- [] Time to drink water!
+- [] Display next subscript stream in the taskbar clock (Windhawk > Taskbar Clock Customization > Web content items)
 
 # Debug
-- [X] The program is not release yet after the program exit.
+
+- [x] The program is not release yet after the program exit.
 - [] Two takodachi.exe in exe version when run.
