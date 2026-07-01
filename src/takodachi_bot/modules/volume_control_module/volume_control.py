@@ -8,11 +8,11 @@ from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 if __name__ == "__main__":
     import sys
     import os
-    sys.path.append(os.path.abspath(
-        os.path.join(os.path.dirname(__file__), '../'*3)))
+
+    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../" * 3)))
 
 
-class VolumeControl():
+class VolumeControl:
     def __init__(self):
         self._minimum_volume_limit: float = 0.3
         self._maximum_volume_limit: float = 0.5
@@ -25,7 +25,8 @@ class VolumeControl():
 
         # Activate the interface to control audio volume
         self._interface = self._devices.Activate(
-            IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+            IAudioEndpointVolume._iid_, CLSCTX_ALL, None
+        )
         self._volume: Any = cast(self._interface, POINTER(IAudioEndpointVolume))
 
     @property
@@ -57,14 +58,16 @@ class VolumeControl():
                 if self.current_volume < self._minimum_volume_limit:
                     # If it does, set the volume to the minimum limit
                     self._volume.SetMasterVolumeLevelScalar(
-                        self._minimum_volume_limit, None)
+                        self._minimum_volume_limit, None
+                    )
                     # print("Mini limit start: " + str(self._minimum_volume_limit))
 
                 # Check if the current volume exceeds the maximum limit
                 if self.current_volume > self._maximum_volume_limit:
                     # If it does, set the volume to the maximum limit
                     self._volume.SetMasterVolumeLevelScalar(
-                        self._maximum_volume_limit, None)
+                        self._maximum_volume_limit, None
+                    )
                     # print("Max limit start: " + str(self._maximum_volume_limit))
 
             # Wait for a period (1 second) before checking again

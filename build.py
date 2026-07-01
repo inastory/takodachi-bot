@@ -34,7 +34,7 @@ def main():
     # 自動尋找對應的輸出位置放過去
     dst_possibilities = [
         os.path.join("dist", "takodachi"),  # 狀況 A: 資料夾模式 (目錄)
-        "dist"                             # 狀況 B: 單一檔案模式 (.exe 直接在 dist 根目錄下)
+        "dist",  # 狀況 B: 單一檔案模式 (.exe 直接在 dist 根目錄下)
     ]
 
     conf_copied = False
@@ -47,7 +47,9 @@ def main():
                 conf_copied = True
                 break
         if not conf_copied:
-            print("⚠️ 找不到 dist/ 輸出的目標資料夾，請確認 PyInstaller 的輸出檔名是否為 takodachi")
+            print(
+                "⚠️ 找不到 dist/ 輸出的目標資料夾，請確認 PyInstaller 的輸出檔名是否為 takodachi"
+            )
     else:
         print(f"❌ 找不到原始的設定檔：{src_conf}，無法複製！")
 

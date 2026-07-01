@@ -1,6 +1,7 @@
 from ..base_service import BaseService
 from .app_icon import AppIcon
 
+
 class AppIconService(BaseService):
     def __init__(self, services_manager, exit_callback):
         super().__init__()

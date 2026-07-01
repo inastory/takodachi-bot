@@ -3,10 +3,14 @@ import asyncio
 if __name__ == "__main__":
     import os
     import sys
-    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../')))
+
+    sys.path.append(
+        os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../"))
+    )
 
 from takodachi_bot.modules.base_service import BaseService
 from takodachi_bot.modules.volume_control_module.volume_control import VolumeControl
+
 
 class VolumeControlService(BaseService):
     def __init__(self):
@@ -24,7 +28,9 @@ class VolumeControlService(BaseService):
         #     raise PermissionError("This script requires administrative privileges to modify audio settings.")
         print("Volume monitoring started.")
 
-        asyncio.run_coroutine_threadsafe(self.volume_control.volume_monitoring(), self._volume_control_loop)
+        asyncio.run_coroutine_threadsafe(
+            self.volume_control.volume_monitoring(), self._volume_control_loop
+        )
         self._volume_control_loop.run_forever()
 
     def stop_service(self):
@@ -34,6 +40,7 @@ class VolumeControlService(BaseService):
 
         self._volume_control_loop.stop()
         print("Volume monitoring stopped.")
+
 
 if __name__ == "__main__":
     volume_control_service = VolumeControlService()

@@ -3,5 +3,6 @@ class PermissionError(Exception):
         super().__init__("Permission denied: " + message)
         self.code = code
 
+
 class NoneService(Exception):
     pass

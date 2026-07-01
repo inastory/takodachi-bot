@@ -1,4 +1,4 @@
-class BaseService():
+class BaseService:
     def __init__(self) -> None:
         self._is_running = False
 

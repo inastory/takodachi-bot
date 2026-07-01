@@ -8,7 +8,7 @@ from .volume_control_module.service import VolumeControlService
 
 from .services_manager import ServicesManager
 
-__all__=[
+__all__ = [
     "ServicesManager",
     "BaseService",
     "AppIconService",

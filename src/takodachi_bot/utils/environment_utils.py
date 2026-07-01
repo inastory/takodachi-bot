@@ -1,6 +1,7 @@
 from ctypes import windll
 
-class EnvironmentUtils():
+
+class EnvironmentUtils:
     @classmethod
     def has_permission(self):
         try:

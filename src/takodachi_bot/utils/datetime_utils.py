@@ -1,8 +1,10 @@
 from datetime import datetime
 import pytz
 
+
 def format_datetime_by_timestamp(timestamp):
     return datetime.fromtimestamp(timestamp).strftime("%Y-%m-%d %H:%M:%S")
+
 
 def count_difference_by_timestamp(timestamp):
     time_difference = datetime.now() - datetime.fromtimestamp(timestamp)
@@ -12,10 +14,11 @@ def count_difference_by_timestamp(timestamp):
     minutes, seconds = divmod(remainder, 60)
     return f"{int(days)}d {int(hours)}:{int(minutes)}:{int(seconds)}"
 
+
 def format_hk_datetime_by_string(date_string, format):
-    
+
     date_time = datetime.strptime(date_string, format)
-    hk_timezone = pytz.timezone('Asia/Hong_Kong')
+    hk_timezone = pytz.timezone("Asia/Hong_Kong")
 
     print(date_time)
 

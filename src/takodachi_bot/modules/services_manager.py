@@ -5,21 +5,22 @@ from concurrent.futures import ThreadPoolExecutor
 from takodachi_bot.configs import (
     SERVICE_DISCORD_BOT as DISCORD_BOT_KEY,
     SERVICE_VOLUME_CONTROL as VOLUME_CONTROL_KEY,
-    SERVICE_APP_ICON as APP_ICON_KEY
+    SERVICE_APP_ICON as APP_ICON_KEY,
 )
 
 from takodachi_bot.modules import DiscordBotService
 from takodachi_bot.modules import VolumeControlService
 from takodachi_bot.modules import AppIconService
 
-log = logging.getLogger('exception')
+log = logging.getLogger("exception")
 
-class ServicesManager():
+
+class ServicesManager:
     _services = OrderedDict()
-    
+
     def __init__(self, loop, exit_callback):
         self.loop = loop
-        self.executor = ThreadPoolExecutor(thread_name_prefix='We-are-here-')
+        self.executor = ThreadPoolExecutor(thread_name_prefix="We-are-here-")
         self.exit_callback = exit_callback
         self.init_services()
 
@@ -54,11 +55,11 @@ class ServicesManager():
         for name, service in self._services.items():
             try:
                 service.stop_service()
-                print(
-                    f"[ServicesManager] Service '{name}' stopped successfully.")
+                print(f"[ServicesManager] Service '{name}' stopped successfully.")
             except Exception as e:
                 print(
-                    f"[ServicesManager] Error occurred while stopping service '{name}': {e}")
+                    f"[ServicesManager] Error occurred while stopping service '{name}': {e}"
+                )
 
     def is_service_running(self, service_name):
         service = self.get_service(service_name)

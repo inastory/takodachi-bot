@@ -5,19 +5,26 @@ import asyncio
 if __name__ == "__main__":
     import os
     import sys
-    sys.path.append(os.path.abspath(os.path.join(
-        os.path.dirname(__file__), '../../..')))
+
+    sys.path.append(
+        os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
+    )
 
 from takodachi_bot.modules.discord_bot_module import cogs
 import takodachi_bot.configs as configs
+
 
 class DiscordBot(commands.Bot):
     def __init__(self):
         intents = Intents.default()
         intents.message_content = True
-        super().__init__(description=configs.BOT_DESCRIPTION,command_prefix=configs.BOT_PREFIX, intents=intents)
+        super().__init__(
+            description=configs.BOT_DESCRIPTION,
+            command_prefix=configs.BOT_PREFIX,
+            intents=intents,
+        )
         asyncio.run(self.set_cogs())
-    
+
     async def setup_cog(self, cog):
         await cog.setup(self)
 
@@ -36,11 +43,12 @@ class DiscordBot(commands.Bot):
 
     async def send_message_to_channel(self, channel_id, message):
         channel = self.get_channel(channel_id)
-        
+
         if channel:
             await channel.send(message)
         else:
             print(f"Channel with ID {channel_id} not found.")
+
 
 if __name__ == "__main__":
     discord_bot = DiscordBot()

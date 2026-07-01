@@ -12,12 +12,18 @@ from takodachi_bot.modules.archive_module.service import (
     archive_youtube_stream,
 )
 
+
 class AppIcon(Icon):
     def __init__(self, services_manager, exit_callback):
         self.services_manager = services_manager
         self.exit_callback = exit_callback
         self.notify_title = "Takodachi says"
-        super().__init__(name=configs.APP_NAME, title=configs.APP_TITLE, icon=Image.open(configs.APP_ICON_PATH), menu=self.init_menu())
+        super().__init__(
+            name=configs.APP_NAME,
+            title=configs.APP_TITLE,
+            icon=Image.open(configs.APP_ICON_PATH),
+            menu=self.init_menu(),
+        )
 
     def init_menu(self):
         twitch_submenu = Menu(
@@ -29,7 +35,7 @@ class AppIcon(Icon):
             MenuItem("Stop Limit Volume", self.stop_volume_control),
         )
         app_menu = Menu(
-            MenuItem("Archive Youtube Stream",  archive_youtube_stream, default = True),
+            MenuItem("Archive Youtube Stream", archive_youtube_stream, default=True),
             MenuItem("Archive Twitch Stream...", twitch_submenu),
             MenuItem("Archive Video", archive_video),
             Menu.SEPARATOR,
@@ -37,7 +43,7 @@ class AppIcon(Icon):
             MenuItem("App Status", self.show_app_status),
             MenuItem("Discord Status", self.show_discord_status),
             Menu.SEPARATOR,
-            MenuItem("Volume Control",volume_submenu),
+            MenuItem("Volume Control", volume_submenu),
             Menu.SEPARATOR,
             MenuItem("Exit", action=self.exit),
         )
@@ -47,17 +53,14 @@ class AppIcon(Icon):
         os.startfile("logs")
 
     def show_notify(self, notify_message):
-        self.notify(
-            title=self.notify_title,
-            message=notify_message)
+        self.notify(title=self.notify_title, message=notify_message)
 
     def show_app_status(self):
-        if getattr(sys, 'frozen', False):
+        if getattr(sys, "frozen", False):
             # --- 打包後的 EXE 環境 ---
             # sys.executable 指向你的 takodachi.exe
             # 'cmd /k' 執行完會保持視窗開啟（等同於原本 .bat 的 pause 效果）
-            subprocess.Popen(
-                f'start cmd /k "{sys.executable}" STATUS', shell=True)
+            subprocess.Popen(f'start cmd /k "{sys.executable}" STATUS', shell=True)
         else:
             # --- 開發環境 (uv run) ---
             # 透過 uv 虛擬環境直接去呼叫主程式進入點，並帶入 STATUS

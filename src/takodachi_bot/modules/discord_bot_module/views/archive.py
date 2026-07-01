@@ -1,6 +1,7 @@
 from discord import ButtonStyle, Integration
 from discord.ui import View, button, Button
 
+
 class ArchiveView(View):
     @button(label="Yes", style=ButtonStyle.green, emoji="✅")
     async def stop(self, interaction: Integration, button: Button):
